@@ -9,6 +9,7 @@ import importlib
 import importlib.abc
 import importlib.util
 
+
 def _fix_line(tree, old):
     """Fixes lineno for a one-liner
     """
@@ -115,8 +116,8 @@ class TypeChecker(ast.NodeTransformer):
     _src_import = """
 from modast.runtime.typecheck import typecheck_return as __typecheck_return__, typecheck_arg as __typecheck_arg__, typecheck_assign as __typecheck_assign__   # noqa
 """
-    _src_arg_check = "__typecheck_arg__({name!r}, {value}, {expected_type}) # CHECKING {name})"   # noqa
-    _src_assign_check = "__typecheck_assign__({name!r}, {value}, {expected_type}) # CHECKING {name})"   # noqa
+    _src_arg_check = "__typecheck_arg__({name!r}, {value}, {expected_type}) # CHECKING {name})"  # noqa
+    _src_assign_check = "__typecheck_assign__({name!r}, {value}, {expected_type}) # CHECKING {name})"  # noqa
 
     def __init__(self, filename):
         super().__init__()
@@ -160,8 +161,10 @@ from modast.runtime.typecheck import typecheck_return as __typecheck_return__, t
                     node.body.append(
                         TypeRetChecker(expected_type).generate_check(None)
                     )
-                print(f"Line {node.lineno}: "
-                      f"inserted return guard to {node.name!r}")
+                print(
+                    f"Line {node.lineno}: "
+                    f"inserted return guard to {node.name!r}"
+                )
 
         if any(arg.annotation is not None for arg in node.args.args):
             # Insert argument check to the start of the function
@@ -183,11 +186,12 @@ from modast.runtime.typecheck import typecheck_return as __typecheck_return__, t
             insertpt = 1 if has_docstring(node.body) else 0
             # splice
             node.body = node.body[:insertpt] + new_body + node.body[insertpt:]
-            print(f"Line {node.lineno}: "
-                  f"inserted arg guard to {node.name!r}")
-            print('-' * 80)
+            print(
+                f"Line {node.lineno}: " f"inserted arg guard to {node.name!r}"
+            )
+            print("-" * 80)
             print(ast.unparse(node))
-            print('-' * 80)
+            print("-" * 80)
 
         return node
 

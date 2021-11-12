@@ -8,25 +8,26 @@ Python does not provide any help to do type-checks on `typing`'s "type".
 
 import sys
 
+
 class TypecheckError(TypeError):
     pass
 
 
-def typecheck_arg(name, value, expected_type, / ):
+def typecheck_arg(name, value, expected_type, /):
     _typecheck(value, expected_type, f"argument {name!r}")
 
 
-def typecheck_assign(name, value, expected_type, / ):
+def typecheck_assign(name, value, expected_type, /):
     _typecheck(value, expected_type, f"variable {name!r}")
     return value
 
 
-def typecheck_return(value, expected_type, / ):
+def typecheck_return(value, expected_type, /):
     _typecheck(value, expected_type, f"return value")
     return value
 
 
-def _typecheck(value, expected_type, message, / ):
+def _typecheck(value, expected_type, message, /):
     # resolve forward reference
     if isinstance(expected_type, str):
 

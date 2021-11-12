@@ -8,15 +8,16 @@ from setuptools import setup
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
+
 setup(
-    name = "modast",
-    version = "0.0.1",
+    name="modast",
+    version="0.0.1",
     # description = ("An demonstration of how to create, document, and publish "
     #                                "to the cheese shop a5 pypi.org."),
     # license = "BSD",
     # keywords = "example documentation tutorial",
     # url = "http://packages.python.org/an_example_pypi_project",
-    packages=['modast'],
+    packages=["modast"],
     # long_description=read('README'),
     # classifiers=[
     #     "Development Status :: 3 - Alpha",

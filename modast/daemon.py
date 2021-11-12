@@ -5,6 +5,7 @@ import os
 import sys
 import time
 import traceback
+
 # import logging
 
 from watchdog.observers import Observer
@@ -12,6 +13,7 @@ from watchdog.events import FileSystemEventHandler, FileSystemEvent
 
 
 from modast.modast import run
+
 
 class WatchDog(FileSystemEventHandler):
     def on_modified(self, event: FileSystemEvent):
@@ -33,7 +35,6 @@ class WatchDog(FileSystemEventHandler):
             except Exception as e:
                 print("Ignored exception")
                 traceback.print_exc()
-
 
 
 if __name__ == "__main__":
