@@ -1,0 +1,15 @@
+*.pyc
+*.o
+*.so
+*.dylib
+*.pyd
+*.pdb
+*.egg-info
+*.sw[po]
+*.out
+*.ll
+.coverage
+.nfs*
+tags
+MANIFEST
+__pycache__/
